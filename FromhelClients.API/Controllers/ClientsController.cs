@@ -17,37 +17,17 @@ namespace FromhelClients.API.Controllers
             _clientRepository = clientRepository;
         }
 
-
-        // GET: api/<ClientsController>
         [HttpGet("getClients")]
         public async Task<IEnumerable<ClientEntity>> Get()
         {   
             return await _clientRepository.GetClients();
         }
 
-        // GET api/<ClientsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("getClient/{id}")]
+        public async Task<ClientEntity> Get(string id)
         {
-            return "value";
+            return await _clientRepository.GetClient(id);
         }
 
-        // POST api/<ClientsController>
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/<ClientsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<ClientsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

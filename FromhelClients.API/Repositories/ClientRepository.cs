@@ -26,7 +26,7 @@ namespace FromhelClients.API.Repositories
 
         public Task<ClientEntity> GetClient(string id)
         {
-            throw new NotImplementedException();
+            return _clientCollection.Find(client => client.ClientId == id).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<ClientEntity>> GetClients()

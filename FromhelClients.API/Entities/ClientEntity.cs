@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace FromhelClients.API.Entities
 {
-        [BsonIgnoreExtraElements]
+    [BsonIgnoreExtraElements]
     public class ClientEntity
     {
         public ClientEntity(string ClientName, string ClientEmail)

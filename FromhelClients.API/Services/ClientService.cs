@@ -16,5 +16,10 @@ namespace FromhelClients.API.Services
             return await _clientRepository.GetClients();
         }
 
+        public async Task<ClientEntity> GetClient(string id)
+        {
+            return await _clientRepository.GetClient(id);
+        }
+
     }
 }
