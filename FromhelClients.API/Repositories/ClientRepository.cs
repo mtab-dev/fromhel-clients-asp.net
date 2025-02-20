@@ -1,10 +1,19 @@
 ﻿using FromhelClients.API.Abstractions;
 using FromhelClients.API.Entities;
+using FromhelClients.API.Infra;
+using MongoDB.Driver;
 
 namespace FromhelClients.API.Repositories
 {
     public class ClientRepository : IClientRepository
     {
+        private readonly IMongoCollection<ClientEntity> _clientCollection;
+
+        public ClientRepository(MongoDbService mongoDbService)
+        {
+            _clientCollection = mongoDbService.Database.GetCollection<ClientEntity>("clients");
+        }
+
         public Task<ClientEntity> CreateClient(ClientEntity client)
         {
             throw new NotImplementedException();
@@ -20,9 +29,9 @@ namespace FromhelClients.API.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<ClientEntity>> GetClients()
+        public async Task<IEnumerable<ClientEntity>> GetClients()
         {
-            throw new NotImplementedException();
+            return await _clientCollection.Find(client => true).ToListAsync();
         }
 
         public Task<ClientEntity> UpdateClient(string id, ClientEntity client)

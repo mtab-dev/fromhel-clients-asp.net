@@ -1,18 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FromhelClients.API.Abstractions;
+using FromhelClients.API.Entities;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FromhelClients.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        // GET: api/<ClientsController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private IClientRepository _clientRepository;
+        public ClientsController(IClientRepository clientRepository)
         {
-            return new string[] { "value1", "value2" };
+            _clientRepository = clientRepository;
+        }
+
+
+        // GET: api/<ClientsController>
+        [HttpGet("getClients")]
+        public async Task<IEnumerable<ClientEntity>> Get()
+        {   
+            return await _clientRepository.GetClients();
         }
 
         // GET api/<ClientsController>/5
