@@ -1,6 +1,7 @@
 using FromhelClients.API.Abstractions;
 using FromhelClients.API.Infra;
 using FromhelClients.API.Repositories;
+using FromhelClients.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<MongoDbService>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IClientService, ClientService>();
 
 
 var app = builder.Build();

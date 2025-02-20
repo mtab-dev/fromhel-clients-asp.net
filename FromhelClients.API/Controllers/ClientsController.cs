@@ -1,4 +1,5 @@
 ﻿using FromhelClients.API.Abstractions;
+using FromhelClients.API.DTO;
 using FromhelClients.API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -11,22 +12,32 @@ namespace FromhelClients.API.Controllers
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private IClientRepository _clientRepository;
-        public ClientsController(IClientRepository clientRepository)
+        private IClientService _clientService;
+        public ClientsController(IClientService clientService)
         {
-            _clientRepository = clientRepository;
+            _clientService = clientService;
         }
 
         [HttpGet("getClients")]
         public async Task<IEnumerable<ClientEntity>> Get()
-        {   
-            return await _clientRepository.GetClients();
+        {
+            return await _clientService.GetClients();
         }
 
         [HttpGet("getClient/{id}")]
         public async Task<ClientEntity> Get(string id)
         {
-            return await _clientRepository.GetClient(id);
+            return await _clientService.GetClient(id);
+        }
+
+        [HttpPost("createClient")]
+        public async Task<IActionResult> CreateClient([FromBody] CreateClientDTO client)
+        {
+            if (client == null) return BadRequest("Invalid Object.");
+
+            var createdClient = await _clientService.CreateClient(client); 
+
+            return Ok(createdClient);
         }
 
     }

@@ -14,9 +14,11 @@ namespace FromhelClients.API.Repositories
             _clientCollection = mongoDbService.Database.GetCollection<ClientEntity>("clients");
         }
 
-        public Task<ClientEntity> CreateClient(ClientEntity client)
+        public async Task<ClientEntity> CreateClient(ClientEntity client)
         {
-            throw new NotImplementedException();
+            await _clientCollection.InsertOneAsync(client);
+
+            return client;
         }
 
         public Task<ClientEntity> DeleteClient(string id)

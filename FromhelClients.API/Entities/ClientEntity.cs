@@ -10,7 +10,7 @@ namespace FromhelClients.API.Entities
         public ClientEntity(string ClientName, string ClientEmail)
         {
             Random random = new Random();
-            int randomNumber = random.Next(10000, 9999);
+            int randomNumber = random.Next(10000, 99999);
             ClientId = "FHS-" + randomNumber.ToString();
             Name = ClientName;
             Email = ClientEmail;
