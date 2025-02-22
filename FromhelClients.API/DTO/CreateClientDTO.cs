@@ -2,7 +2,7 @@
 
 namespace FromhelClients.API.DTO
 {
-    public class CreateClientDTO
+    public record CreateClientDTO
     {
         [Required]
         public string Name { get; set; } = string.Empty;

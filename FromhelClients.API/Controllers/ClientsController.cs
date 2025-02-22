@@ -31,10 +31,8 @@ namespace FromhelClients.API.Controllers
         }
 
         [HttpPost("createClient")]
-        public async Task<IActionResult> CreateClient([FromBody] CreateClientDTO client)
+        public async Task<IActionResult> CreateClient(CreateClientDTO client)
         {
-            if (client == null) return BadRequest("Invalid Object.");
-
             var createdClient = await _clientService.CreateClient(client); 
 
             return Ok(createdClient);
