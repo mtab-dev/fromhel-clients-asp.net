@@ -31,14 +31,21 @@ namespace FromhelClients.API.Services
             return insertedClient;
         }
 
-        public Task<ClientEntity> UpdateClient(string id, ClientEntity client)
+        public async Task<ClientEntity> UpdateClient(string id, CreateClientDTO client)
         {
-            throw new NotImplementedException();
+            var updateClient = await _clientRepository.GetClient(id);
+
+            if(updateClient == null) throw new Exception("Client not found");
+
+            updateClient.Name = client.Name;
+            updateClient.Email = client.Email;
+
+            return await _clientRepository.UpdateClient(id, updateClient);
         }
 
-        public Task<ClientEntity> DeleteClient(string id)
+        public async Task<ClientEntity> DeleteClient(string id)
         {
-            throw new NotImplementedException();
+            return await _clientRepository.DeleteClient(id);
         }
     }
 }

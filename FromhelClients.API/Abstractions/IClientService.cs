@@ -8,7 +8,7 @@ namespace FromhelClients.API.Abstractions
         public Task<IEnumerable<ClientEntity>> GetClients();
         public Task<ClientEntity> GetClient(string id);
         public Task<ClientEntity> CreateClient(CreateClientDTO client);
-        public Task<ClientEntity> UpdateClient(string id, ClientEntity client);
+        public Task<ClientEntity> UpdateClient(string id, CreateClientDTO client);
         public Task<ClientEntity> DeleteClient(string id);
     }
 }

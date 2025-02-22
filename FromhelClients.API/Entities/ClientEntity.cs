@@ -27,10 +27,10 @@ namespace FromhelClients.API.Entities
         public string ClientId { get; set; }
 
         [BsonElement("clientName"), BsonRepresentationAttribute(BsonType.String)]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         [BsonElement("email"), BsonRepresentationAttribute(BsonType.String)]
-        public string Email { get; private set; }
+        public string Email { get; set; }
 
         [BsonElement("registeredAt"), BsonRepresentationAttribute(BsonType.DateTime)]
         public DateTime RegisteredAt { get; private set; }

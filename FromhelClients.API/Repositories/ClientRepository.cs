@@ -23,7 +23,7 @@ namespace FromhelClients.API.Repositories
 
         public Task<ClientEntity> DeleteClient(string id)
         {
-            throw new NotImplementedException();
+            return _clientCollection.FindOneAndDeleteAsync(client => client.ClientId == id);
         }
 
         public Task<ClientEntity> GetClient(string id)
@@ -36,9 +36,15 @@ namespace FromhelClients.API.Repositories
             return await _clientCollection.Find(client => true).ToListAsync();
         }
 
-        public Task<ClientEntity> UpdateClient(string id, ClientEntity client)
+        public async Task<ClientEntity> UpdateClient(string id, ClientEntity client)
         {
-            throw new NotImplementedException();
+            var filter = Builders<ClientEntity>.Filter.Eq(c => c.ClientId, id);
+            var update = Builders<ClientEntity>.Update
+                .Set(c => c.Name, client.Name)
+                .Set(c => c.Email, client.Email);
+
+            return await _clientCollection.FindOneAndUpdateAsync(filter, update);
         }
+
     }
 }

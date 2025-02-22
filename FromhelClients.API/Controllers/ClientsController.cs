@@ -40,5 +40,19 @@ namespace FromhelClients.API.Controllers
             return Ok(createdClient);
         }
 
+        [HttpDelete("deleteClient/{id}")]
+        public async Task<IActionResult> DeleteClient(string id)
+        {
+            var deletedClient = await _clientService.DeleteClient(id);
+            return Ok(deletedClient);
+        }
+
+        [HttpPut("updateClient/{id}")]
+        public async Task<IActionResult> UpdateClient(string id, [FromBody] CreateClientDTO client)
+        {
+            var updatedClient = await _clientService.UpdateClient(id, client);
+            return Ok(updatedClient);
+        }
+
     }
 }
